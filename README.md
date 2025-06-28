@@ -1,4 +1,4 @@
-## 📄 Final Report: Real-Time Chat Application - Fullstack
+## 📄 Real-Time Chat Application - Fullstack
 
 * **Author:** Joeveloper
 * **Date:** 28/06/2025
