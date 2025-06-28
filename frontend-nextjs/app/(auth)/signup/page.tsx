@@ -7,7 +7,6 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 const SignUp = () => {
   const { signUp } = useAuth();
   const { mutate: handleSignUp, isPending: isSigningUp } = signUp();
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -36,14 +35,6 @@ const SignUp = () => {
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-400"
           />
-          {/* <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-400"
-          /> */}
 
           <div className="relative">
             <input
@@ -91,58 +82,6 @@ const SignUp = () => {
       </div>
     </main>
   );
-
-  // return (
-  //   <div className="">
-  //     <main>
-  //       <h1>Sign Up</h1>
-  //       <form onSubmit={handleSubmit}>
-  //         <div className="form-group">
-  //           <input
-  //             type="text"
-  //             id="username"
-  //             placeholder="Username"
-  //             value={username}
-  //             onChange={(e) => setUsername(e.target.value)}
-  //             required
-  //           />
-  //         </div>
-  //         <div className="form-group">
-  //           <input
-  //             type="email"
-  //             id="email"
-  //             placeholder="Email"
-  //             value={email}
-  //             onChange={(e) => setEmail(e.target.value)}
-  //             required
-  //           />
-  //         </div>
-  //         <div className="form-group">
-  //           <input
-  //             type="password"
-  //             id="password"
-  //             placeholder="Password"
-  //             value={password}
-  //             onChange={(e) => setPassword(e.target.value)}
-  //             required
-  //           />
-  //         </div>
-  //         <button
-  //           type="submit"
-  //           className="button primary"
-  //           disabled={isSigningUp}
-  //         >
-  //           {isSigningUp ? "Signing up..." : "Sign Up"}
-  //         </button>
-  //       </form>
-  //       {isSigningUp && <div className="loader"></div>}
-  //       <p>
-  //         Already have an account?{" "}
-  //         <CustomLink href="/signin" label="Sign In" className="" />
-  //       </p>
-  //     </main>
-  //   </div>
-  // );
 };
 
 export default SignUp;

@@ -7,11 +7,10 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
-  const { signIn, logOut, user } = useAuth();
+  const { signIn } = useAuth();
   const [password, setPassword] = useState("");
   const { mutate: handleSignIn, isPending: isSigningIn } = signIn();
-const [showPassword, setShowPassword] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -39,16 +38,6 @@ const [showPassword, setShowPassword] = useState(false);
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-400"
             />
           </div>
-          {/* <div>
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-400"
-            />
-          </div> */}
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
@@ -90,48 +79,6 @@ const [showPassword, setShowPassword] = useState(false);
       </div>
     </main>
   );
-
-  // return (
-  //   <div className="sign-in-page">
-  //     <main>
-  //       <h1>Sign In</h1>
-  //       <form onSubmit={handleSubmit}>
-  //         <div className="form-group">
-  //           <input
-  //             type="email"
-  //             id="email"
-  //             placeholder="Email"
-  //             value={email}
-  //             onChange={(e) => setEmail(e.target.value)}
-  //             required
-  //           />
-  //         </div>
-  //         <div className="form-group">
-  //           <input
-  //             type="password"
-  //             id="password"
-  //             placeholder="Password"
-  //             value={password}
-  //             onChange={(e) => setPassword(e.target.value)}
-  //             required
-  //           />
-  //         </div>
-  //         <button
-  //           type="submit"
-  //           className="button primary"
-  //           disabled={isSigningIn}
-  //         >
-  //           {isSigningIn ? "Signing in..." : "Sign In"}
-  //         </button>
-  //       </form>
-  //       {isSigningIn && <div className="">Loading</div>}
-  //       <p>
-  //         Don't have an account?{" "}
-  //         <CustomLink href="/signup" label="Sign Up" className="" />
-  //       </p>
-  //     </main>
-  //   </div>
-  // );
 };
 
 export default SignIn;

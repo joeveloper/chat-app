@@ -61,7 +61,7 @@ export class AuthController {
         "Login successful"
       );
     } catch (e) {
-      next(e); // Pass error to middleware
+      next(e);
     }
   };
 }

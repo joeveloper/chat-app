@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { cn } from '@/lib/utils'; // Make sure this path matches your setup
+import { cn } from '@/lib/utils';
 
 interface CustomLinkProps extends React.ComponentPropsWithoutRef<typeof Link> {
   href: string;

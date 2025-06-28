@@ -11,16 +11,13 @@ export const useAuth = () => {
 
   const signUp = () => {
     return useMutation({
-      mutationFn: (payload: {
-        email: string;
-        password: string;
-      }) => AUTH_API.signUp(payload),
+      mutationFn: (payload: { email: string; password: string }) =>
+        AUTH_API.signUp(payload),
       onSuccess: () => {
         router.push(ROUTES.SIGN_UP);
       },
       onError: (error) => {
         console.error("Signup failed:", error);
-        // You can replace this with toast or user feedback mechanism
       },
     });
   };
@@ -30,7 +27,7 @@ export const useAuth = () => {
       mutationFn: (payload: { email: string; password: string }) =>
         AUTH_API.signIn(payload),
       onSuccess: (data: any) => {
-        console.log('res', data)
+        console.log("res", data);
         Cookies.set("accessToken", data.data.token);
         Cookies.set("username", data.data.username);
         setUser(data.data);
@@ -43,12 +40,6 @@ export const useAuth = () => {
       },
     });
   };
-
-  // const logIn = (userData: any) => {
-  //   localStorage.setItem("token", userData.token);
-  //   setUser(userData.user);
-  //   router.push("/rooms");
-  // };
 
   const logOut = () => {
     Cookies.remove("accessToken");

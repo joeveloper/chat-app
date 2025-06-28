@@ -15,14 +15,12 @@ export class AuthService {
     email: string;
     password: string;
   }) {
-    console.log("Hello")
     // Check if email already exists
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       throw new HttpBadRequestError("Email already in use");
     }
 
-    // Hash the password
     const hashedPassword = await hashPassword(password);
 
     const username = generateUsernameFromEmail(email);
