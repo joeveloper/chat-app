@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { ROUTES } from "@/constants/routes";
 import { ROOM_API } from "@/services/roomService";
+import { ROUTES } from "@/constants/routes";
 
 interface Room {
   id: string;

@@ -5,6 +5,7 @@ import "./globals.css";
 import { Rubik } from "next/font/google";
 import ReactQueryProvider from "@/context/QueryContext";
 
+
 const rubik = Rubik({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],

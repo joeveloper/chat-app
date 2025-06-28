@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
+
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "@/hooks/useAuth";
 import CustomLink from "@/components/CustomLink";
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 const SignUp = () => {
   const { signUp } = useAuth();

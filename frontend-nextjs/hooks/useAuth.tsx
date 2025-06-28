@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { AUTH_API } from "@/lib/api";
 import Cookies from "js-cookie";
+import { AUTH_API } from "../services/authService";
 import { ROUTES } from "@/constants/routes";
 
 export const useAuth = () => {
@@ -31,7 +31,7 @@ export const useAuth = () => {
         Cookies.set("accessToken", data.data.token);
         Cookies.set("username", data.data.username);
         setUser(data.data);
-        router.push("/rooms");
+        router.push(ROUTES.ROOM);
       },
       onError: (error: any) => {
         const errorMessage =
@@ -44,7 +44,7 @@ export const useAuth = () => {
   const logOut = () => {
     Cookies.remove("accessToken");
     setUser(null);
-    router.push("/signin");
+    router.push(ROUTES.SIGN_IN);
   };
 
   return { user, signUp, signIn, logOut };
