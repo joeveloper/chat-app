@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { useSocket } from "@/hooks/useSocket";
-import { CHAT_API } from "@/services/chatService";
 import Cookies from "js-cookie";
+import { CHAT_API } from "@/services/chatService";
+import { useSocket } from "@/hooks/useSocket";
 import { useAuth } from "@/hooks/useAuth";
 
 const Chat: React.FC = () => {

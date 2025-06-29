@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
@@ -16,8 +16,11 @@ export const useAuth = () => {
       onSuccess: () => {
         router.push(ROUTES.SIGN_UP);
       },
-      onError: (error) => {
-        console.error("Signup failed:", error);
+      onError: (error: any) => {
+        console.log(error.error);
+        const errorMessage = error?.error;
+        alert(errorMessage);
+        return;
       },
     });
   };
@@ -34,9 +37,10 @@ export const useAuth = () => {
         router.push(ROUTES.ROOMS);
       },
       onError: (error: any) => {
-        const errorMessage =
-          error?.response?.data?.message || "Login failed. Please try again.";
+        console.log(error.error);
+        const errorMessage = error?.error;
         alert(errorMessage);
+        return;
       },
     });
   };
