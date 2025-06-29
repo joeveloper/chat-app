@@ -31,7 +31,7 @@ export const useAuth = () => {
         Cookies.set("accessToken", data.data.token);
         Cookies.set("username", data.data.username);
         setUser(data.data);
-        router.push(ROUTES.ROOM);
+        router.push(ROUTES.ROOMS);
       },
       onError: (error: any) => {
         const errorMessage =
@@ -43,6 +43,7 @@ export const useAuth = () => {
 
   const logOut = () => {
     Cookies.remove("accessToken");
+    Cookies.remove("username");
     setUser(null);
     router.push(ROUTES.SIGN_IN);
   };

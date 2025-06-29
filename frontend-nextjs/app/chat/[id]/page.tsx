@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useSocket } from "@/hooks/useSocket";
 import { CHAT_API } from "@/services/chatService";
-
+import Cookies from "js-cookie";
+import { useAuth } from "@/hooks/useAuth";
 
 const Chat: React.FC = () => {
+  const {logOut} = useAuth()
   const router = useRouter();
   const socket = useSocket();
   const params = useParams();
@@ -16,9 +18,7 @@ const Chat: React.FC = () => {
   >([]);
   const [message, setMessage] = useState("");
   const sender =
-    typeof window !== "undefined"
-      ? localStorage.getItem("username") || "User"
-      : "User";
+    typeof window !== "undefined" ? Cookies.get("username") || "User" : "User";
 
   useEffect(() => {
     const getMessages = async () => {
@@ -55,20 +55,24 @@ const Chat: React.FC = () => {
       setMessage("");
     } catch (error) {
       console.error("Error sending message:", error);
-    } 
+    }
   };
+
+  const handleSignOut = () => {
+    logOut()
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
-      <header className="bg-blue-600 text-white p-4 flex items-center justify-between">
+      <header className="bg-blue-600 text-white p-4 flex items-center justify-evenly">
         <button
           onClick={() => router.back()}
-          className="text-white text-xl font-semibold"
+          className="text-white  text-xl font-semibold"
         >
           &larr;
         </button>
-        <h1 className="text-lg font-semibold mx-auto">Chat Room</h1>
-        <div className="w-6" /> 
+        <div className="text-lg font-semibold">Chat Room</div>
+        <button onClick={handleSignOut} className="w-6">Logout</button>
       </header>
 
       <main className="flex flex-col-reverse md:flex-row flex-1 p-4 gap-4">
@@ -103,7 +107,7 @@ const Chat: React.FC = () => {
                 <div
                   key={index}
                   className={`p-3 rounded-md max-w-[80%] ${
-                    msg.username === sender
+                    msg?.username === sender
                       ? "bg-blue-100 text-right ml-auto"
                       : "bg-gray-200 text-left"
                   }`}

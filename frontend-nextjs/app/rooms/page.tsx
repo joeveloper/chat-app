@@ -3,18 +3,31 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ROOM_API } from "@/services/roomService";
 import { ROUTES } from "@/constants/routes";
-
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import { useAuth } from "@/hooks/useAuth";
 interface Room {
   id: string;
   name: string;
 }
 
 const Rooms: React.FC = () => {
+  const { logOut } = useAuth();
+
   const [rooms, setRooms] = useState<Room[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [roomName, setRoomName] = useState("");
   const [loading, setLoading] = useState(false);
   const [creatingRoom, setCreatingRoom] = useState(false);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = Cookies.get("accessToken");
+    if (!token) {
+      router.replace(ROUTES.SIGN_IN);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -57,15 +70,25 @@ const Rooms: React.FC = () => {
     }
   };
 
+  const handleSignOut = () => {
+    logOut();
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <header className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Available Rooms</h1>
+      <header className="flex items-center justify-evenly mb-6">
+        <div className="text-2xl font-bold text-gray-800">
+          Available Chat Rooms
+        </div>
         <button
+          title="Create a new room"
           onClick={() => setShowModal(true)}
           className="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full text-lg font-bold"
         >
           +
+        </button>
+        <button onClick={handleSignOut} className="w-6">
+          Logout
         </button>
       </header>
 
