@@ -14,7 +14,8 @@ export const useAuth = () => {
       mutationFn: (payload: { email: string; password: string }) =>
         AUTH_API.signUp(payload),
       onSuccess: () => {
-        router.push(ROUTES.SIGN_UP);
+        alert("Account created successfully. Please sign in.");
+        router.push(ROUTES.SIGN_IN);
       },
       onError: (error: any) => {
         console.log(error.error);

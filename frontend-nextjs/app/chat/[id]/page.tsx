@@ -8,7 +8,7 @@ import { useSocket } from "@/hooks/useSocket";
 import { useAuth } from "@/hooks/useAuth";
 
 const Chat: React.FC = () => {
-  const {logOut} = useAuth()
+  const { logOut } = useAuth();
   const router = useRouter();
   const socket = useSocket();
   const params = useParams();
@@ -45,6 +45,7 @@ const Chat: React.FC = () => {
     };
   }, [socket, roomId]);
 
+ 
   const sendMessage = async () => {
     try {
       console.log(message, roomId);
@@ -59,8 +60,8 @@ const Chat: React.FC = () => {
   };
 
   const handleSignOut = () => {
-    logOut()
-  }
+    logOut();
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
@@ -72,7 +73,9 @@ const Chat: React.FC = () => {
           &larr;
         </button>
         <div className="text-lg font-semibold">Chat Room</div>
-        <button onClick={handleSignOut} className="w-6">Logout</button>
+        <button onClick={handleSignOut} className="w-6">
+          Logout
+        </button>
       </header>
 
       <main className="flex flex-col-reverse md:flex-row flex-1 p-4 gap-4">
